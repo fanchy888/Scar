@@ -6,15 +6,15 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 
-SIZE = 100
-A_PCT = 0.2
+SIZE = 200
+A_PCT = 0.1
 
 
 def generate_data(data_size, anomaly_size):
     max_radius = 5.0
     r = np.random.uniform(0.1, max_radius, data_size)
-    for i in range(anomaly_size * data_size):
-        r[i] = random.uniform(6.0, 10.0)
+    for i in range(int(anomaly_size * data_size)):
+        r[i] = random.uniform(7.0, 10.0)
 
     theta = np.random.uniform(0, 2*np.pi, data_size)
 
@@ -50,7 +50,7 @@ def test_plot(title):
 
 @test_plot('iforest')
 def test_iforest(test_set):
-    anomaly = IsolationForest().decision(test_set)
+    anomaly = IsolationForest().decision(test_set, threshold=0.55)
     return test_set, anomaly
 
 
