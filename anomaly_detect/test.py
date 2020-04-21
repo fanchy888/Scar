@@ -1,5 +1,5 @@
 import random
-from anomaly_detect import IsolationForest
+from anomaly_detect import IsolationForest, LOF
 
 import numpy as np
 import matplotlib
@@ -54,7 +54,13 @@ def test_iforest(test_set):
     return test_set, anomaly
 
 
+@test_plot('LOF')
+def test_lof(test_set):
+    anomaly = LOF(test_set).decision(pct=0.1)
+    return test_set, anomaly
+
+
 if __name__ == '__main__':
     data_set = generate_data(SIZE, A_PCT)
-    test_iforest(data_set)
+    test_lof(data_set)
     plt.show()
